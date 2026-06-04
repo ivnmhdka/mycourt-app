@@ -6,6 +6,8 @@ class InputField extends StatefulWidget {
   final TextInputType keyboardType;
   final IconData icon;
   final bool isPassword;
+  final Color borderColor;
+  final Color backgroundColor;
 
    InputField({
     Key? key,
@@ -13,6 +15,8 @@ class InputField extends StatefulWidget {
     required this.controller,
     required this.keyboardType,
     required this.icon,
+    this.borderColor = const Color(0xFFCCCCCC),
+    this.backgroundColor = const Color(0xFFEEEEEE),
     this.isPassword = false,
   }) : super(key: key);
 
@@ -26,25 +30,25 @@ class _InputFieldState extends State<InputField> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding:  EdgeInsets.symmetric(horizontal: 16),
       decoration: BoxDecoration(
-        color: Color(0xFFEEEEEE),
+        color: widget.backgroundColor,
         borderRadius: BorderRadius.circular(14),
-        border: Border.all(color: Color(0xFFCCCCCC)),
+        border: Border.all(color: widget.borderColor),
       ),
       child: TextField(
         controller: widget.controller,
         keyboardType: widget.keyboardType,
+        textAlignVertical: TextAlignVertical.center,
         obscureText: widget.isPassword ? _obscure : false,
         decoration: InputDecoration(
-          icon: Icon(widget.icon, color: Colors.grey),
+          prefixIcon: Icon(widget.icon, color: Colors.grey),
           hintText: widget.placeholder,
           hintStyle: TextStyle(
             color: Colors.grey[600],
             fontFamily: GoogleFonts.inter().fontFamily,
           ),
           border: InputBorder.none,
-          contentPadding:  EdgeInsets.symmetric(vertical: 15),
+          contentPadding:  EdgeInsets.symmetric(vertical: 16, horizontal: 16),
           suffixIcon: widget.isPassword
               ? IconButton(
                   icon: Icon(

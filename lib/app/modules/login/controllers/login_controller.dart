@@ -32,8 +32,8 @@ class LoginController extends GetxController {
   void handleLogin() async {
     try {
       isLoading.value = true;
-      await _authService.login(emailController.text, passwordController.text);
-      Get.offAllNamed('/home');
+      await _authService.login(emailController.text.trim(), passwordController.text.trim());
+      Get.offAllNamed('/app-dashboard');
     } catch (e) {
       print("error: ${e.toString()}");
       if (e.toString().contains("invalid-credential")) {

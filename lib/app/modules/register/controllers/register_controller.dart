@@ -25,6 +25,7 @@ class RegisterController extends GetxController {
     fullNameController.dispose();
     emailController.dispose();
     passwordController.dispose();
+    confirmPasswordController.dispose();
     super.onClose();
   }
 
@@ -35,8 +36,8 @@ class RegisterController extends GetxController {
     }
     try {
       isLoading.value = true;
-      await _authService.register(emailController.text, passwordController.text);
-      Get.offAllNamed('/home');
+      await _authService.register(emailController.text.trim(), passwordController.text.trim(), fullNameController.text.trim());
+      Get.offAllNamed('/login');
     } catch (e) {
       Get.snackbar("Registration Failed", e.toString());
     } finally {

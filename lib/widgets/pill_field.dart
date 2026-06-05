@@ -6,12 +6,16 @@ class PillField extends StatefulWidget {
   final Color color;
   final Color textColor;
   final bool isFilled;
+  final FontWeight fontWeight;
+  final Color? borderColor;
   const PillField({
     super.key,
     required this.text,
     required this.onPressed,
     required this.color,
     required this.textColor,
+    this.borderColor,
+    this.fontWeight = FontWeight.w500,
     this.isFilled = true,
   });
 
@@ -28,7 +32,7 @@ class _PillFieldState extends State<PillField> {
         padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         decoration: BoxDecoration(
           color: widget.isFilled ? widget.color : Colors.transparent,
-          border: Border.all(color: widget.color),
+          border: widget.borderColor != null ? Border.all(color: widget.borderColor!) : null,
           borderRadius: BorderRadius.circular(16),
         ),
         child: Text(
@@ -36,7 +40,7 @@ class _PillFieldState extends State<PillField> {
           style: TextStyle(
             color: widget.textColor,
             fontSize: 14,
-            fontWeight: FontWeight.w500,
+            fontWeight: widget.fontWeight,
           ),
         ),
       ),

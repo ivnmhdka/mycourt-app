@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:get/get.dart';
-import 'package:mycourt/app/modules/history/views/history_view.dart';
 import 'package:mycourt/app/modules/profile/views/profile_view.dart';
 import 'package:mycourt/widgets/feature_card.dart';
 import 'package:mycourt/widgets/popular_field_card.dart';
@@ -15,49 +14,49 @@ class AppDashboardView extends GetView<AppDashboardController> {
   Widget build(BuildContext context) {
     final List<Widget> tabs = [
       _buildHomeTab(), 
-      const HistoryView(),
+      const Center(child: Text("Halaman History")), 
       const Center(child: Text("Halaman Notifs")),  
       const ProfileView(), 
     ];
 
     return Scaffold(
       backgroundColor: const Color(0xFFFAFAFA),
-      // bottomNavigationBar: Obx(
-      //   () => BottomNavigationBar(
-      //     currentIndex: controller.selectedIndex.value, 
-      //     onTap: controller.changeTabIndex,            
-      //     type: BottomNavigationBarType.fixed,
-      //     selectedItemColor: const Color(0xFF009966),
-      //     unselectedItemColor: Colors.grey,
-      //     showUnselectedLabels: true,
-      //     selectedLabelStyle: GoogleFonts.inter(
-      //       fontSize: 12,
-      //       fontWeight: FontWeight.w600,
-      //     ),
-      //     unselectedLabelStyle: GoogleFonts.inter(
-      //       fontSize: 12,
-      //       fontWeight: FontWeight.w500,
-      //     ),
-      //     items: const [
-      //       BottomNavigationBarItem(
-      //         icon: Icon(Icons.home_outlined),
-      //         label: 'Home',
-      //       ),
-      //       BottomNavigationBarItem(
-      //         icon: Icon(Icons.list_alt_outlined),
-      //         label: 'History',
-      //       ),
-      //       BottomNavigationBarItem(
-      //         icon: Icon(Icons.notifications_none_outlined),
-      //         label: 'Notifs',
-      //       ),
-      //       BottomNavigationBarItem(
-      //         icon: Icon(Icons.person_outline),
-      //         label: 'Profile',
-      //       ),
-      //     ],
-      //   ),
-      // ),
+      bottomNavigationBar: Obx(
+        () => BottomNavigationBar(
+          currentIndex: controller.selectedIndex.value, 
+          onTap: controller.changeTabIndex,            
+          type: BottomNavigationBarType.fixed,
+          selectedItemColor: const Color(0xFF009966),
+          unselectedItemColor: Colors.grey,
+          showUnselectedLabels: true,
+          selectedLabelStyle: GoogleFonts.inter(
+            fontSize: 12,
+            fontWeight: FontWeight.w600,
+          ),
+          unselectedLabelStyle: GoogleFonts.inter(
+            fontSize: 12,
+            fontWeight: FontWeight.w500,
+          ),
+          items: const [
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home_outlined),
+              label: 'Home',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.list_alt_outlined),
+              label: 'History',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.notifications_none_outlined),
+              label: 'Notifs',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.person_outline),
+              label: 'Profile',
+            ),
+          ],
+        ),
+      ),
       body: Obx(() => tabs[controller.selectedIndex.value]),
     );
   }
@@ -79,15 +78,10 @@ class AppDashboardView extends GetView<AppDashboardController> {
                 children: [
                   Row(
                     children: [
-                      GestureDetector(
-                        onTap: () {
-                          Get.to(() => Get.toNamed('/profile'));
-                        },
-                        child: const CircleAvatar(
-                          radius: 24,
-                          backgroundImage: NetworkImage(
-                            'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=300&auto=format&fit=crop',
-                          ),
+                      const CircleAvatar(
+                        radius: 24,
+                        backgroundImage: NetworkImage(
+                          'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=300&auto=format&fit=crop',
                         ),
                       ),
                       const SizedBox(width: 12),
@@ -113,6 +107,36 @@ class AppDashboardView extends GetView<AppDashboardController> {
                             ),
                           ),
                         ],
+                      ),
+                    ],
+                  ),
+                  Stack(
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          shape: BoxShape.circle,
+                          border: Border.all(
+                            color: Colors.grey.withOpacity(0.2),
+                          ),
+                        ),
+                        child: const Icon(
+                          Icons.notifications_none,
+                          color: Colors.black87,
+                        ),
+                      ),
+                      Positioned(
+                        right: 8,
+                        top: 8,
+                        child: Container(
+                          width: 8,
+                          height: 8,
+                          decoration: const BoxDecoration(
+                            color: Colors.red,
+                            shape: BoxShape.circle,
+                          ),
+                        ),
                       ),
                     ],
                   ),

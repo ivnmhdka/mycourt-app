@@ -23,7 +23,7 @@ class AppDashboardController extends GetxController {
   @override
   void onReady() async{
     super.onReady();
-    checkAuthStatus();
+    await checkIsLogin();
   }
 
   @override
@@ -85,10 +85,19 @@ class AppDashboardController extends GetxController {
     }
   }
 
-  void checkAuthStatus() {
-    User? user = _auth.currentUser;
-    if (user == null) {
-      Get.offAllNamed('/login');
+
+  Future<void> checkIsLogin() async {
+    try {
+      isLoadingFields.value = true;
+      var isLogin = await _auth.currentUser != null;
+      var isValidUser = await _firestore.collection('users').doc(_auth.currentUser?.uid).get().then((doc) => doc.exists);
+      if (!isLogin || !isValidUser) {
+        Get.offAllNamed('/login');
+      }
+    } catch (e) {
+      print("error: ${e.toString()}");
+    } finally {
+      isLoadingFields.value = false;
     }
   }
 

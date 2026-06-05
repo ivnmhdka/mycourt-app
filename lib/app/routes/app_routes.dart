@@ -15,6 +15,8 @@ abstract class Routes {
   static const USER_MANAGEMENT = _Paths.USER_MANAGEMENT;
   static const MANAGER_DASHBOARD = _Paths.MANAGER_DASHBOARD;
   static const ADMIN_BOOKING = _Paths.ADMIN_BOOKING;
+  static const PROFILE = _Paths.PROFILE;
+  static const HISTORY = _Paths.HISTORY;
 }
 
 abstract class _Paths {
@@ -31,4 +33,6 @@ abstract class _Paths {
   static const USER_MANAGEMENT = '/user-management';
   static const MANAGER_DASHBOARD = '/manager-dashboard';
   static const ADMIN_BOOKING = '/admin-booking';
+  static const PROFILE = '/profile';
+  static const HISTORY = '/history';
 }

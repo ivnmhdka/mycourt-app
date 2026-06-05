@@ -27,12 +27,6 @@ class AdminDashboardView extends GetView<AdminDashboardController> {
           ),
         ),
         centerTitle: false,
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.settings_outlined, color: Colors.grey),
-            onPressed: () {},
-          ),
-        ],
       ),
       body: RefreshIndicator(
         color: const Color(0xFF009966),
@@ -161,10 +155,18 @@ class AdminDashboardView extends GetView<AdminDashboardController> {
               ),
               const SizedBox(height: 12),
               _buildActionCard(
-                icon: Icons.settings_outlined,
-                title: "System Settings",
-                onTap: () {},
+                icon: Icons.description_outlined,
+                title: "Manage Bookings",
+                onTap: () {
+                  Get.toNamed('/admin-booking');
+                },
               ),
+              const SizedBox(height: 12),
+              // _buildActionCard(
+              //   icon: Icons.settings_outlined,
+              //   title: "System Settings",
+              //   onTap: () {},
+              // ),
             ],
           ),
         ),

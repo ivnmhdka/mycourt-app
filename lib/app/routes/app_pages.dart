@@ -18,10 +18,14 @@ import '../modules/UserManagement/bindings/user_management_binding.dart';
 import '../modules/UserManagement/views/user_management_view.dart';
 import '../modules/checkout/bindings/checkout_binding.dart';
 import '../modules/checkout/views/checkout_view.dart';
+import '../modules/history/bindings/history_binding.dart';
+import '../modules/history/views/history_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/login/bindings/login_binding.dart';
 import '../modules/login/views/login_view.dart';
+import '../modules/profile/bindings/profile_binding.dart';
+import '../modules/profile/views/profile_view.dart';
 import '../modules/register/bindings/register_binding.dart';
 import '../modules/register/views/register_view.dart';
 
@@ -30,7 +34,7 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.ADMIN_BOOKING;
+  static const INITIAL = Routes.LOGIN;
 
   static final routes = [
     GetPage(
@@ -50,7 +54,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.APP_DASHBOARD,
-      page: () => const AppDashboardView(),
+      page: () => AppDashboardView(),
       binding: AppDashboardBinding(),
     ),
     GetPage(
@@ -92,6 +96,16 @@ class AppPages {
       name: _Paths.ADMIN_BOOKING,
       page: () => const AdminBookingView(),
       binding: AdminBookingBinding(),
+    ),
+    GetPage(
+      name: _Paths.PROFILE,
+      page: () => const ProfileView(),
+      binding: ProfileBinding(),
+    ),
+    GetPage(
+      name: _Paths.HISTORY,
+      page: () => const HistoryView(),
+      binding: HistoryBinding(),
     ),
   ];
 }

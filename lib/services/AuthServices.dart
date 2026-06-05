@@ -30,4 +30,28 @@ class Authservices extends GetxService
   Future<void> logout() async {
     await _auth.signOut();
   }
+
+  Future<bool> checkIsLogin() async {
+    User? user = _auth.currentUser;
+    if (user != null) {
+      return true;
+    } else {
+      print("No user is currently logged in.");
+      throw Exception("No user is currently logged in.");
+    }
+  }
+
+  Future<Map<String, dynamic>> getProfileData() async {
+    User? user = _auth.currentUser;
+    if (user != null) {
+      DocumentSnapshot userDoc = await _firestore.collection('users').doc(user.uid).get();
+      if (userDoc.exists) {
+        return userDoc.data() as Map<String, dynamic>;
+      } else {
+        throw Exception("User data not found.");
+      }
+    } else {
+      throw Exception("No user is currently logged in.");
+    }
+  }
 }

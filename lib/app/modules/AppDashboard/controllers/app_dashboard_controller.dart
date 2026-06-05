@@ -8,6 +8,11 @@ class AppDashboardController extends GetxController {
   var username = ''.obs;
   var isLoadingFields = true.obs;
   var popularFields = <Map<String, dynamic>>[].obs;
+  var selectedIndex = 0.obs;
+
+  void changeTabIndex(int index) {
+    selectedIndex.value = index;
+  }
   @override
   void onInit() {
     super.onInit();

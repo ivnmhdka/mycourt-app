@@ -12,14 +12,30 @@ class LoginController extends GetxController {
   void toggleRememberMe() {
     rememberMe.value = !rememberMe.value;
   }
+
+  Future<void> checkIsLogin() async {
+    try {
+      isLoading.value = true;
+      var isLogin = await _authService.checkIsLogin();
+      if (isLogin) {
+        Get.offAllNamed('/app-dashboard');
+      }
+    } catch (e) {
+      print("error: ${e.toString()}");
+    } finally {
+      isLoading.value = false;
+    }
+  }
+
   @override
   void onInit() {
     super.onInit();
   }
 
   @override
-  void onReady() {
+  void onReady() async {
     super.onReady();
+    await checkIsLogin();
   }
 
   @override

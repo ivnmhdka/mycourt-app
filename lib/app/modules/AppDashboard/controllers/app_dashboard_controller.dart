@@ -21,8 +21,9 @@ class AppDashboardController extends GetxController {
   }
 
   @override
-  void onReady() {
+  void onReady() async{
     super.onReady();
+    checkAuthStatus();
   }
 
   @override
@@ -81,6 +82,13 @@ class AppDashboardController extends GetxController {
       username.value = user.displayName ?? "User";
     } else {
       username.value = "Guest";
+    }
+  }
+
+  void checkAuthStatus() {
+    User? user = _auth.currentUser;
+    if (user == null) {
+      Get.offAllNamed('/login');
     }
   }
 
